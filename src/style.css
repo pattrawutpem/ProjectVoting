@@ -1,0 +1,123 @@
+* {
+  /* font-family: 'Krub', sans-serif; */
+  font-family: 'Anuphan', sans-serif;
+}
+
+
+.banner {
+  background: url('../public/image/voting_bg.png');
+  width: 100%;
+  height: 663px;
+  background-blend-mode: multiply;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+}
+
+.active {
+  font-weight: 600;
+  font-size: larger;
+  color: #0A0F3B;
+}
+
+.color {
+  &.darktheme {
+    color: #060B24;
+  }
+
+  &.theme {
+    color: #0A0F3B;
+  }
+
+  &.darkbluetheme {
+    color: #122276;
+  }
+
+  &.lightbluetheme {
+    color: #569AF7;
+  }
+
+  &.bluetheme {
+    color: #2968EC;
+  }
+}
+
+.icon-x {
+  font-size: 500%;
+  text-align: center;
+}
+
+
+
+.btn-theme {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #060B24;
+  --bs-btn-border-color: #060B24;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #0A0F3B;
+  --bs-btn-hover-border-color: #060B24;
+  --bs-btn-focus-shadow-rgb: 49, 132, 253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #060B24;
+  --bs-btn-active-border-color: #060B24;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #060B24;
+  --bs-btn-disabled-border-color: #060B24;
+  background-color: var(--bs-btn-bg);
+}
+
+/* 
+.btn-outline-theme {
+  --bs-btn-color: #2968EC;
+  --bs-btn-border-color: #2968EC;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #2968EC;
+  --bs-btn-hover-border-color: #2968EC;
+  --bs-btn-focus-shadow-rgb: 13, 110, 253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #2968EC;
+  --bs-btn-active-border-color: #2968EC;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #2968EC;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: #2968EC;
+  --bs-gradient: none;
+} */
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  font-size: 18px;
+  background: #fff;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 767px) {
+  .border-se-r {
+    border-right: none !important;
+
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .border-se-r {
+    border-right: 2px solid rgb(205, 205, 205) !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .border-se-r {
+    border-right: 2px solid rgb(205, 205, 205) !important;
+  }
+}

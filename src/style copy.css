@@ -1,0 +1,293 @@
+/* Navbar */
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #146C94;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-shadow: 1px 0.2px 1px #ffffff;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #4a89a5;
+  border-radius: 5%;
+}
+
+.active {
+  background-color: #749BC2;
+  color: white;
+  text-shadow: 1px 0.2px 1px #ffffff;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.menu-rigth {
+  float: right;
+}
+
+/* Home */
+
+.banner {
+  background: url('../public/image/Election.png');
+  width: 100%;
+  height: 663px;
+  background-blend-mode: multiply;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+}
+
+.box1 {
+  background: #AFD3E2;
+  width: 100%;
+  height: 541px;
+  flex-shrink: 0;
+}
+
+.box2 {
+  background: #ffffff;
+  width: 100%;
+  height: 541px;
+  flex-shrink: 0;
+}
+
+.box3 {
+  background: #7E7E7E;
+  margin-top: 100px;
+  width: 100%;
+  height: 200px;
+  flex-shrink: 0;
+}
+
+/* Font*/
+.txtH1 {
+  color: #000000;
+  font-feature-settings: 'clig' off, 'liga' off;
+  text-shadow: 3px 4px 4px rgba(40, 38, 38, 0.25);
+  font-family: Poppins;
+  font-size: 60px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 36.035px;
+  /* 60.059% */
+}
+
+.txtH2 {
+  color: #000;
+  font-feature-settings: 'clig' off, 'liga' off;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: Poppins;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 36.035px;
+  text-align: center;
+  /* 72.071% */
+}
+
+/* TypeVote */
+#imgType {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 318px;
+  text-align: center;
+}
+
+/* Candidate */
+.object-fit-cover {
+  object-fit: cover !important;
+}
+
+.card {
+  width: 18rem;
+}
+
+.card-title {
+  color: #3F89C3;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Poppins;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+.card {
+  background: #ffffff;
+  box-shadow: 2px 4px 4px 0.20px rgba(0, 0, 0, 0.25);
+}
+
+.btn1 {
+  width: 100%;
+  flex-shrink: 0;
+  border-radius: 30px;
+  background: #0066B1;
+  box-shadow: 2px 4px 4px 0.20px rgba(0, 0, 0, 0.25);
+}
+
+/* CandidateDetail */
+
+.detail-box {
+  background: rgb(45, 45, 64);
+  height: 290px;
+}
+
+.detail-box2 {
+  background: rgb(97, 97, 110);
+}
+
+.image-detail {
+  width: 70%;
+  margin-left: 10%;
+  border-radius: 28px;
+}
+
+.btn2 {
+  width: 200px;
+  flex-shrink: 0;
+  border-radius: 30px;
+  background: #3F89C3;
+  box-shadow: 2px 4px 4px 0.20px rgba(0, 0, 0, 0.25);
+}
+
+.rowcenter {
+  margin-left: 5%;
+}
+
+/* Result */
+
+.img-resulte {
+  border-radius: 28px;
+}
+
+.img-ProgressBar {
+  width: 70px;
+  height: 70px;
+  flex-shrink: 0;
+  border-radius: 28px;
+}
+
+.card-result {
+  width: 450px;
+  height: 100px;
+  flex-shrink: 0;
+}
+
+.text-score {
+  width: 100%;
+  flex-shrink: 0;
+  color: #3F89C3;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Poppins;
+  font-size: 65px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+}
+
+.table-Result {
+  border-radius: 10px;
+  background: #46ADF8;
+}
+
+.tbody-radius {
+  border-radius: 5px;
+  background: #ffffff;
+}
+
+.Table-font {
+  color: #FFF;
+}
+
+/* Contract */
+
+.img-mail {
+  width: 450px;
+  height: 450px;
+  flex-shrink: 0;
+  margin-left: 10%;
+}
+
+.from-contract {
+  width: 689px;
+  height: 564px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #F7F7F7;
+  margin-left: 20%;
+}
+
+textarea {
+  width: 100%;
+  height: 200px;
+}
+
+.img-login {
+  width: 350.039px;
+  height: 650px;
+  flex-shrink: 0;
+  border-radius: 10px 0px 0px 10px;
+  box-shadow: 2px 4px 4px 0.20px rgba(0, 0, 0, 0.25);
+}
+
+.login {
+  width: 350.039px;
+  height: 650px;
+  flex-shrink: 0;
+  background: #FBFBFB;
+  border-radius: 0px 10px 10px 0px;
+  box-shadow: 2px 4px 4px 0.20px rgba(0, 0, 0, 0.25);
+}
+
+.form-login {
+  box-shadow: 2px 4px 4px 0.20px rgba(0, 0, 0, 0.25);
+  border-radius: 10px 10px 10px 10px;
+}
+
+.font-title {
+  text-align: center;
+  margin-top: 35%;
+  margin-bottom: 20%;
+  width: 100%;
+  height: 24.529px;
+  flex-shrink: 0;
+  color: #3F89C3;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Poppins;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 36.035px;
+}
+
+.boarder-center {
+  margin-top: 2%;
+  margin-left: 25%;
+}
+
+.txtH3 {
+  width: 180.752px;
+  height: 33.1px;
+  flex-shrink: 0;
+  color: #3F89C3;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Poppins;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 700;
+}
