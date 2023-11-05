@@ -1,0 +1,59 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+struct Candidate {
+    uint index;            // Index ของผู้สมัครในอาร์เรย์
+    string name;           // ชื่อคนสมัคร
+    uint voteCount;        // จำนวนคนเลือก
+    int candidateType; 
+    string registrationDate;  // วันที่สมัครในรูปแบบข้อความ
+    uint number;            // เบอร์
+    uint toppic_id; 
+}
+
+struct Voter {
+    bool isVoted;
+    uint voteIndex;
+}
+
+contract Election {
+    address public manager;  // เจ้าหน้าที่จัดการเลือกตั้ง
+    Candidate[] public candidates;
+    mapping(address => Voter) public voter;
+
+    constructor() {
+        manager = msg.sender;
+    }
+
+    modifier onlyManager {
+        require(msg.sender == manager, "You Can't Manager");
+        _;
+    }
+
+    function addCandidate(string memory name, int candidateType, string memory registrationDate, uint number, uint toppic_id) onlyManager public {
+        candidates.push(Candidate(candidates.length, name, 0, candidateType, registrationDate, number, toppic_id));
+    }
+
+    // เลือกตั้ง
+    function vote(uint index) public {
+        //ตรวจสอบว่าลงคะนนหรือยังถ้าลงแล้วจะไม่สามารถโหวตได้
+        // require(!voter[msg.sender].isVoted, "You are Elected");
+        // require(index < candidates.length, "Invalid candidate index");
+
+        voter[msg.sender].voteIndex = index;
+        voter[msg.sender].isVoted = true;
+        candidates[index].voteCount += 1;
+    }
+
+    // ฟังก์ชัน "view" สำหรับการอ่านข้อมูลผู้สมัครตาม index
+    function getCandidate(uint index) public view returns (string memory, uint, int, string memory) {
+        require(index < candidates.length, "Invalid index");
+        Candidate memory candidate = candidates[index];
+        return (candidate.name, candidate.voteCount, candidate.candidateType, candidate.registrationDate);
+    }
+
+    // ฟังก์ชัน "view" สำหรับการอ่านข้อมูลทั้งหมดของผู้สมัคร
+    function getAllCandidates() public view returns (Candidate[] memory) {
+        return candidates;
+    }
+}
