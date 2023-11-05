@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useParams } from 'react-router-dom';
 import axios from "axios";
 import Swal from 'sweetalert2';
 
@@ -7,9 +7,9 @@ export default function OTP() {
     const navigate = useNavigate();
     const [otp, setOtp] = useState('');
     const storedToken = localStorage.getItem("Token");
-
+    const { id_v } = useParams();
     const Token = JSON.parse(storedToken);
-    const [count, setCount] = useState(20);
+    const [count, setCount] = useState(40);
 
     useEffect(() => {
         timeCountDown();
@@ -80,7 +80,7 @@ export default function OTP() {
                 title: 'สำเร็จ',
                 text: 'OTP ถูกต้อง!!',
             }).then(() => {
-                navigate('/');
+                navigate(`/Vote/${id_v}`);
             });
         } else {
             Swal.fire({

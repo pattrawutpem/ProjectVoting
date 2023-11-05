@@ -43,7 +43,31 @@ export default function Vote() {
     hour12: false,
   });
   const dateTime = `${year}/${month}/${day} ${formattedTime}`;
+  const dateTime2 = `${year}-${month}-${day} ${formattedTime}`;
 
+  const end_date = new Date(DataDeclare.end_date);
+  const dateTime2Date = new Date(dateTime2);
+  
+  // คำนวณผลต่างของเวลา
+  const timeDifference = end_date - dateTime2Date;
+
+  function formatTimeDifference(timeDifference) {
+    const totalMilliseconds = Math.abs(timeDifference);
+    const totalSeconds = Math.floor(totalMilliseconds / 1000);
+    const totalMinutes = Math.floor(totalSeconds / 60);
+    const totalHours = Math.floor(totalMinutes / 60);
+  
+    const days = Math.floor(totalHours / 24);
+    const hours = totalHours % 24;
+    const minutes = totalMinutes % 60;
+    const seconds = totalSeconds % 60;
+  
+    const formattedTimeDifference = `${days} วัน ${hours} ชั่วโมง ${minutes} นาที ${seconds} วินาที`;
+    return formattedTimeDifference;
+  }
+
+  console.log(dateTime2);
+  
   useEffect(() => {
     checkTokenAndRedirect(navigate);
     getDataStudent();
@@ -55,18 +79,7 @@ export default function Vote() {
     getDataToppic();
     timeCountDown();
     getDataDeclare();
-    checkDate();
   }, []);
-
-  const checkDate = async () => {
-    if (year == DataDeclare.year) {
-      if (month <= DataDeclare.month) {
-        if (day <= DataDeclare.day) {
-          console.log("OK");
-        }
-      }
-    }
-  }
 
   const timeCountDown = () => {
     const interval = setInterval(() => {
@@ -335,7 +348,7 @@ export default function Vote() {
       <div className="container mt-28">
         <div className="text-center fs-3 fw-bold color theme mt-5">
           <h1>เลือกโหวตผู้สมัคร</h1>
-          <div className="text-end fs-2"><i class="fa-sharp fa-light fa-clock"></i> {formattedTime}</div>
+          <div className="text-end fs-2 mt-3"><i class="fa-sharp fa-light fa-clock"></i> {formatTimeDifference(timeDifference)}</div>
           <div className="col-lg-3">
             <select
               className="form-select"
@@ -388,7 +401,7 @@ export default function Vote() {
                         {filteredCandidates.map((candidate) => (
                           <div className="text-center" key={candidate.index}>
                             {user.map((user) => {
-                              if (dateTime <= DataDeclare.end_date1) {
+                              if (dateTime2 <= DataDeclare.end_date) {
                                 if (user.voter_id == Token.voter_id) {
                                   return (
                                     <button
@@ -455,7 +468,7 @@ export default function Vote() {
                         {filteredCandidates.map((candidate) => (
                           <div className="text-center" key={candidate.index}>
                             {user.map((user) => {
-                              if (dateTime <= DataDeclare.end_date1) {
+                              if (dateTime2 <= DataDeclare.end_date) {
                                 if (user.voter_id == Token.voter_id) {
                                   return (
                                     <button
@@ -523,7 +536,7 @@ export default function Vote() {
                       {filteredCandidates.map((candidate) => (
                         <div className="text-center" key={candidate.index}>
                           {user.map((user) => {
-                            if (dateTime <= DataDeclare.end_date1) {
+                            if (dateTime2 <= DataDeclare.end_date) {
                               if (user.voter_id == Token.voter_id) {
                                 return (
                                   <button
@@ -591,7 +604,7 @@ export default function Vote() {
                         {filteredCandidates.map((candidate) => (
                           <div className="text-center" key={candidate.index}>
                             {user.map((user) => {
-                              if (dateTime <= DataDeclare.end_date1) {
+                              if (dateTime2 <= DataDeclare.end_date) {
                                 if (user.voter_id == Token.voter_id) {
                                   return (
                                     <button

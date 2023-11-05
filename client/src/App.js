@@ -20,7 +20,7 @@ function App() {
           <Route path="/Candidate/:type/:id/CandidateDetail/:t_id" element={<CandidateDetail />} />
           <Route path="/Result" element={<Result />} />
           <Route path="/Login" element={<Login />} />
-          <Route path="/OTP" element={<OTP />} />
+          <Route path="/:id_v/OTP" element={<OTP />} />
         </Routes>
     </BrowserRouter>
   );

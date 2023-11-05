@@ -31,7 +31,7 @@ function TypeVote() {
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 mt-5">
           <div className="col-3">
             <Link
-              to={Token ? `/Vote/1` : ``}
+              to={Token ? `/1/OTP` : ``}
               onClick={Token ? "" : () => AlertLogin()}
             >
               <div className="d-flex justify-content-center">
@@ -49,7 +49,7 @@ function TypeVote() {
           </div>
           <div className="col-3">
             <Link
-              to={Token ? `/Vote/2` : ``}
+              to={Token ? `/2/OTP` : ``}
               onClick={Token ? "" : () => AlertLogin()}
             >
               <div className="d-flex justify-content-center">
@@ -67,7 +67,7 @@ function TypeVote() {
           </div>
           <div className="col-3">
             <Link
-              to={Token ? `/Vote/3` : ``}
+              to={Token ? `/3/OTP` : ``}
               onClick={Token ? "" : () => AlertLogin()}
             >
               <div className="d-flex justify-content-center">
@@ -83,7 +83,7 @@ function TypeVote() {
           </div>
           <div className="col-3">
             <Link
-              to={Token ? `/Vote/4` : ``}
+              to={Token ? `/4/OTP` : ``}
               onClick={Token ? "" : () => AlertLogin()}
             >
               <div className="d-flex justify-content-center">
