@@ -86,8 +86,8 @@ switch ($case) {
         $file_name = basename($target_file); //ตัด parth เอาแค่ ชื่อ
         move_uploaded_file($_FILES["picture"]["tmp_name"], $target_file);
 
-        $sql = "INSERT INTO register_club_president(club_president_id, picture, number, prefix, club_president_firstname, club_president_lastname, age, birth_date, idCard, email, phone, faculty, major, slogan, detail, type_id, score, regis_date,void) 
-        VALUES('$club_president_id', :picture, :number, :prefix, :club_president_firstname, :club_president_lastname, :age, :birth_date, :idCard, :email, :phone, :faculty, :major, :slogan, :detail, '3', '0',date(now()), 0)";
+        $sql = "INSERT INTO register_club_president(club_president_id, picture, number, prefix, club_president_firstname, club_president_lastname, age, birth_date, idCard, email, phone, faculty, major, slogan, detail, regis_date) 
+        VALUES('$club_president_id', :picture, :number, :prefix, :club_president_firstname, :club_president_lastname, :age, :birth_date, :idCard, :email, :phone, :faculty, :major, :slogan, :detail,date(now()))";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':picture', $file_name);
         $stmt->bindParam(':number', $_POST["number"]);

@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/lungban/static/css/main.a0452a11.css",
+    "main.js": "/lungban/static/js/main.e04b6867.js",
+    "static/js/787.97f9c1a1.chunk.js": "/lungban/static/js/787.97f9c1a1.chunk.js",
+    "index.html": "/lungban/index.html",
+    "main.a0452a11.css.map": "/lungban/static/css/main.a0452a11.css.map",
+    "main.e04b6867.js.map": "/lungban/static/js/main.e04b6867.js.map",
+    "787.97f9c1a1.chunk.js.map": "/lungban/static/js/787.97f9c1a1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a0452a11.css",
+    "static/js/main.e04b6867.js"
+  ]
+}

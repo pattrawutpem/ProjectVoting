@@ -75,7 +75,7 @@ switch ($case) {
         $location = $stmt->fetch(PDO::FETCH_ASSOC);
     break;
     case 5:
-        $sql = "SELECT *,SUBSTRING(start_date , 12,8) AS start_time, SUBSTRING(end_date , 12,8) AS end_time, DATE_FORMAT(SUBSTRING(REPLACE(start_date,'-','/'),1,10),'%d/%m/%Y') AS start_date1 , DATE_FORMAT(SUBSTRING(REPLACE(end_date,'-','/'),1,10),'%d/%m/%Y') as end_date1 ,DATE_FORMAT(end_date,'%d') AS day, DATE_FORMAT(end_date,'%m') AS month, DATE_FORMAT(end_date,'%Y') AS year FROM `declare` ORDER BY declare_id DESC";
+        $sql = "SELECT *,SUBSTRING(start_date , 12,8) AS start_time, SUBSTRING(end_date , 12,8) AS end_time, DATE_FORMAT(SUBSTRING(REPLACE(start_date,'-','/'),1,10),'%d/%m/%Y') AS start_date1 , REPLACE(end_date,'-','/') as end_date1 ,DATE_FORMAT(end_date,'%d') AS day, DATE_FORMAT(end_date,'%m') AS month, DATE_FORMAT(end_date,'%Y') AS year FROM `declare` ORDER BY declare_id DESC";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $location = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -86,6 +86,15 @@ switch ($case) {
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $location = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($location);
+        break;
+    case 7:
+        $sql = "SELECT *,SUBSTRING(start_date , 12,8) AS start_time, SUBSTRING(end_date , 12,8) AS end_time, DATE_FORMAT(SUBSTRING(REPLACE(start_date,'-','/'),1,10),'%d/%m/%Y') AS start_date1 ,REPLACE(end_date,'-','/') as end_date1,DATE_FORMAT(end_date,'%d') AS day, DATE_FORMAT(end_date,'%m') AS month, DATE_FORMAT(end_date,'%Y') AS year FROM `declare` WHERE type_id =:id";
+        $path = explode('/', $_SERVER['REQUEST_URI']);
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':id', $path[5]);
+        $stmt->execute();
+        $location = $stmt->fetch(PDO::FETCH_ASSOC);
         echo json_encode($location);
         break;
 }

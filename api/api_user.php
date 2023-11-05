@@ -12,7 +12,7 @@ $conn = $objDb->connect();
 $case = $_GET['xCase'];
 switch ($case) {
     case 0:
-        $sql = "SELECT * FROM `voter` JOIN type USING(type_id) WHERE voter.void = 0 ORDER BY voter.voter_id DESC";
+        $sql = "SELECT * FROM `voter` WHERE void = 0 ORDER BY voter_id DESC";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $location = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -37,8 +37,8 @@ switch ($case) {
             $voter_id = $maxIdResult + 1;
         }
 
-        $sql = "INSERT INTO voter(voter_id, voter_firstname, voter_lastname, Gender, idCard, email, phone, type_id,status_vote, void) 
-        VALUES('$voter_id', :voter_firstname, :voter_lastname, :Gender, :idCard, :email, :phone, :type_id, 0,0)";
+        $sql = "INSERT INTO voter(voter_id, voter_firstname, voter_lastname, Gender, idCard, email, phone) 
+        VALUES('$voter_id', :voter_firstname, :voter_lastname, :Gender, :idCard, :email, :phone)";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':voter_firstname', $_POST["voter_firstname"]);
         $stmt->bindParam(':voter_lastname', $_POST["voter_lastname"]);
@@ -46,7 +46,6 @@ switch ($case) {
         $stmt->bindParam(':idCard', $_POST["idCard"]);
         $stmt->bindParam(':email', $_POST["email"]);
         $stmt->bindParam(':phone', $_POST["phone"]);
-        $stmt->bindParam(':type_id', $_POST["type_id"]);
 
         if ($stmt->execute()) {
             $response = ['status' => 1, 'message' => 'Record created successfully.'];
@@ -73,7 +72,7 @@ switch ($case) {
         //     break;
     case 5:
         try {
-            $sql = "UPDATE voter SET voter_firstname = :voter_firstname, voter_lastname = :voter_lastname, Gender = :Gender, idCard = :idCard, email = :email, phone = :phone , type_id = :type_id WHERE voter_id = :id";
+            $sql = "UPDATE voter SET voter_firstname = :voter_firstname, voter_lastname = :voter_lastname, Gender = :Gender, idCard = :idCard, email = :email, phone = :phone WHERE voter_id = :id";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':id', $_POST["voter_id"]);
             $stmt->bindParam(':voter_firstname', $_POST["voter_firstname"]);
@@ -82,7 +81,6 @@ switch ($case) {
             $stmt->bindParam(':idCard', $_POST["idCard"]);
             $stmt->bindParam(':email', $_POST["email"]);
             $stmt->bindParam(':phone', $_POST["phone"]);
-            $stmt->bindParam(':type_id', $_POST["type_id"]);
 
             if ($stmt->execute()) {
                 $response = ['status' => 1, 'message' => 'Record updated successfully.'];
@@ -126,11 +124,10 @@ switch ($case) {
                                     $idCard = $data[3];
                                     $email = $data[4];
                                     $phone = $data[5];
-                                    $type_id = $data[6];
 
-                                    $stmt = $conn->prepare('INSERT INTO voter (voter_id, voter_firstname, voter_lastname, Gender, idCard, email, phone,type_id,status_vote, void) 
-                                        VALUES (?, ?, ?, ?, ?, ?, ?, ?,0, 0)');
-                                    $stmt->execute([$voter_id, $voter_firstname, $voter_lastname, $Gender, $idCard, $email, $phone, $type_id]);
+                                    $stmt = $conn->prepare('INSERT INTO voter (voter_id, voter_firstname, voter_lastname, Gender, idCard, email, phone) 
+                                        VALUES (?, ?, ?, ?, ?, ?, ?)');
+                                    $stmt->execute([$voter_id, $voter_firstname, $voter_lastname, $Gender, $idCard, $email, $phone]);
 
                                     // เพิ่มค่า voter_id สำหรับการเพิ่มข้อมูลในแถวถัดไป
                                     $voter_id++;
@@ -163,15 +160,15 @@ switch ($case) {
         $location = $stmt->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode($location);
         break;
-    case 8:
-        $sql = "SELECT COUNT(status_vote) AS TotalD  FROM `voter` WHERE void = 0 AND status_vote = 1";
+    case 8://ข้อมูล สส
+        $sql = "SELECT COUNT(status_vote_hor) AS TotalD  FROM `voter` WHERE void = 0 AND status_vote_hor = 0";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $location = $stmt->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode($location);
         break;
     case 9:
-        $sql = "SELECT COUNT(status_vote) AS TotalA FROM `voter` WHERE void = 0 AND status_vote = 0";
+        $sql = "SELECT COUNT(status_vote_hor) AS TotalA FROM `voter` WHERE void = 0 AND status_vote_hor = 1";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $location = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -184,4 +181,63 @@ switch ($case) {
         $location = $stmt->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode($location);
         break;
+    case 11: //สจ.
+        $sql = "SELECT COUNT(status_vote_prc) AS TotalD  FROM `voter` WHERE void = 0 AND status_vote_prc = 0";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $location = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($location);
+        break;
+    case 12:
+        $sql = "SELECT COUNT(status_vote_prc) AS TotalA FROM `voter` WHERE void = 0 AND status_vote_prc = 1";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $location = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($location);
+        break;
+    case 13: //สโม.
+        $sql = "SELECT COUNT(status_vote_clp) AS TotalD  FROM `voter` WHERE void = 0 AND status_vote_clp = 0";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $location = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($location);
+        break;
+    case 14:
+        $sql = "SELECT COUNT(status_vote_clp) AS TotalA FROM `voter` WHERE void = 0 AND status_vote_clp = 1";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $location = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($location);
+        break;
+    case 15: //อื่นๆ.
+        $sql = "SELECT COUNT(status_vote_other) AS TotalD  FROM `voter` WHERE void = 0 AND status_vote_other = 0";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $location = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($location);
+        break;
+    case 16:
+        $sql = "SELECT COUNT(status_vote_other) AS TotalA FROM `voter` WHERE void = 0 AND status_vote_other = 1";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $location = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($location);
+        break;
+    case 17: //เช็ค otp
+        $sql = "SELECT * FROM voter WHERE void = 0 AND voter_id = :voter_id AND otp = :otp";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':otp', $_POST['otp']);
+        $stmt->bindParam(':voter_id', $_POST['voter_id']);
+        $stmt->execute();
+        $results = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($results) {
+            $results['status'] = 1;
+            $results['message'] = 'successfully.';
+        } else {
+            $results['status'] = 0;
+            $results['message'] = 'Failed.';
+        }
+        echo json_encode($results);
+        break;
+
 }

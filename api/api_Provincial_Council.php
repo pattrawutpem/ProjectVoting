@@ -60,9 +60,9 @@ switch ($case) {
         $sql = "INSERT INTO register_provincial_council(provincial_id, picture, number, 
          prefix, provincial_firstname, provincial_lastname, age, birth_date, idCard, email, phone, 
          nationality, career, house_number, moo , tumbon, district, province, post, constituency,
-          educational, type_id, regis_date, void) VALUES('$Representatives_id', :picture, :number, :prefix,
+          educational, regis_date) VALUES('$Representatives_id', :picture, :number, :prefix,
            :provincial_firstname, :provincial_lastname, :age, :birth_date, :idCard, :email, :phone, :nationality,
-            :career, :house_number, :moo, :tumbon,:district, :province, :post, :constituency, :educational, 2,date(now()), 0)";
+            :career, :house_number, :moo, :tumbon,:district, :province, :post, :constituency, :educational,date(now()))";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':picture', $file_name);
         $stmt->bindParam(':number', $_POST["number"]);

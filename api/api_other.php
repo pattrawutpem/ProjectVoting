@@ -62,7 +62,7 @@ switch ($case) {
             $Representatives_id = $maxIdResult + 1;
         }
 
-        $sql = "INSERT INTO register_toppic(toppic_id,toppic_name,void) VALUES('$Representatives_id',:toppic_name,0)";
+        $sql = "INSERT INTO register_toppic(toppic_id,toppic_name) VALUES('$Representatives_id',:toppic_name)";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':toppic_name', $_POST["toppic_name"]);
         if ($stmt->execute()) {
@@ -299,5 +299,14 @@ switch ($case) {
             http_response_code(400); // Bad Request
             echo json_encode(array("message" => "ข้อมูลไม่ถูกต้องหรือไม่ครบถ้วน"));
         }
+        break;
+    case 22:
+        $sql = "SELECT * FROM register_other WHERE void = 0 AND register_other_id = :id order by score DESC";
+        $path = explode('/', $_SERVER['REQUEST_URI']);
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':id', $path[5]);
+        $stmt->execute();
+        $location = $stmt->fetch(PDO::FETCH_ASSOC);
+        echo json_encode($location);
         break;
 }

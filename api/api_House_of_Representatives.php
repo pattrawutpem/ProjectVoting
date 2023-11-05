@@ -80,10 +80,10 @@ switch ($case) {
         $sql = "INSERT INTO register_house_of_representatives(Representatives_id, picture, number, 
         prefix, Representatives_firstname, Representatives_lastname, age, birth_date, idCard, email, phone, 
         nationality, career, house_number, moo , tumbon, district, province, post, Political_Party, constituency,
-         educational, slogan, detail, type_id,regis_date, void) VALUES('$Representatives_id', :picture, :number, :prefix,
+         educational, slogan, detail,regis_date) VALUES('$Representatives_id', :picture, :number, :prefix,
           :Representatives_firstname, :Representatives_lastname, :age, :birth_date, :idCard, :email, :phone, :nationality,
            :career, :house_number, :moo, :tumbon,:district, :province, :post, :Political_Party, :constituency, :educational,
-            :slogan, :detail, 1,date(now()), 0)";
+            :slogan, :detail,date(now()))";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':picture', $file_name);
         $stmt->bindParam(':number', $_POST["number"]);
@@ -232,7 +232,7 @@ switch ($case) {
         $stmt->execute();
         $location = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $sql = "UPDATE `voter` SET status_vote = 1 WHERE voter_id = :id_";
+        $sql = "UPDATE `voter` SET status_vote_hor = 1 WHERE voter_id = :id_";
         $path = explode('/', $_SERVER['REQUEST_URI']);
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':id_', $path[6]);
